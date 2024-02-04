@@ -15,7 +15,7 @@ media/
 static/
 
 # Celery
-celerybeat-schedule
+celerybeat-schedule.db
 
 # IDE/Editor
 .vscode/
