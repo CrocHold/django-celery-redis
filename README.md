@@ -96,7 +96,7 @@ python manage.py runserver
 Visit the following endpoints:
 
 - **GUI**: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
-- **API**: [http://127.0.0.1:8000/api/videos?searchQuery=${searchQuery}&sortOrder=${sortOrder}&page=${currentPage}](http://127.0.0.1:8000/api/videos?searchQuery=${searchQuery}&sortOrder=${sortOrder}&page=${currentPage})
+- **API**: ``` http://127.0.0.1:8000/api/videos?searchQuery=${searchQuery}&sortOrder=${sortOrder}&page=${currentPage} ```
 
 **Note:** Ensure that MongoDB and Redis servers are running locally before starting the Django app.
 
