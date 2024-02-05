@@ -3,10 +3,15 @@ from googleapiclient.discovery import build
 import pymongo
 from datetime import datetime, timedelta
 from config import MONGO_URI, YOUTUBE_API_KEYS
-from constants import PUBLISHED_AFTER_MINUTES, MAX_FETCHED
+from constants import PUBLISHED_AFTER_MINUTES, MAX_FETCHED, CUTOFF_MINUTES
 
 
 def build_youtube_service():
+    """
+    build service and report in case of failure.
+    respond with videos, in case of success.
+
+    """
 
     for api_key in YOUTUBE_API_KEYS:
         search_query = 'official'
@@ -40,6 +45,10 @@ def build_youtube_service():
 
 @shared_task
 def fetch_latest_videos():
+    """
+    fetch and add latest videos to database.
+    """
+    
     try:
         response = build_youtube_service()
 
@@ -79,12 +88,15 @@ def fetch_latest_videos():
 
 @shared_task
 def delete_outdated_videos():
+    """
+    delete outdated videos from database
+    """
 
     client = pymongo.MongoClient(MONGO_URI)
     db = client.assignment
     collection = db.videos
 
-    cutoff_date = datetime.utcnow() - timedelta(minutes=5)
+    cutoff_date = datetime.utcnow() - timedelta(minutes=CUTOFF_MINUTES)
 
     # Delete outdated videos
     result = collection.delete_many({'published_datetime': {'$lt': cutoff_date}})

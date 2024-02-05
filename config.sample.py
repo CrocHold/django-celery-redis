@@ -6,5 +6,5 @@ YOUTUBE_API_KEYS = [
                     ]
 
 
-# Update if required, keeping the db name "assignment"
+# Update if required, keeping the db name as "assignment"
 MONGO_URI = 'mongodb://localhost:27017/assignment'

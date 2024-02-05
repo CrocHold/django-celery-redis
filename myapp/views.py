@@ -1,11 +1,7 @@
 from django.shortcuts import render
-from django.core.cache import cache  # Import Django's cache module
-# from rest_framework import generics
-from django.db.models import Q
-from .models import Video
+from django.core.cache import cache
 from django.http import JsonResponse
 from django.core.cache import cache
-from django.db.models import Q
 from pymongo import MongoClient
 from bson.json_util import dumps
 from config import MONGO_URI
@@ -13,11 +9,19 @@ from constants import CACHE_EXPIRATION_SECONDS
 
 
 def index(request):
+    """
+    send an html dashboard to view the videos.
+    """
     return render(request, "myapp/index.html")
 
 
 
 def query(request):
+    """
+    query the database, based on provided filter & sort parameters.
+    respond with stringified array of video documents as described in model.
+
+    """
     # Check if the result is already in the cache
     cache_key = f"video_list:{hash(str(request.GET))}"
     cached_result = cache.get(cache_key)
