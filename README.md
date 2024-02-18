@@ -1,6 +1,6 @@
-# Yt video-fetcher
+# Youtube Video Recommender
 
-Welcome to the **Yt video-fetcher** app that fetches latest videos! This Django+Celery project uses MongoDB as the database and Redis as the caching backend & message broker.
+Welcome to the **Youtube Video Recommender** app that fetches latest videos! This Django+Celery project uses MongoDB as the database and Redis as the caching backend & message broker.
 
 ## Getting Started
 
